@@ -1,1 +1,423 @@
-<h1>Hello World</h1>
+{% load static %}
+<html lang="en">
+	<head>
+		
+		<!-- For more info check out https://sites.google.com/a/google.com/pub-tags/engineering/tools/manual-tests -->
+		<!-- NOTE: not expected to no fill unless isReward param is commented out in GPT -->
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <title>Wifi News</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-touch-fullscreen" content="yes">
+        <meta name="HandheldFriendly" content="True">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-16x16.png' %}">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+        <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+        <!-- Slick CSS -->
+        <link rel="stylesheet" type="text/css" href="{% static 'lib/slick/slick/slick.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'lib/slick/slick/slick-theme.css' %}">
+
+		
+        <!-- Font Awesome Free 5.10.2 CSS JS -->
+        <link href="{% static 'lib/fontawesome-free-5.10.2-web/css/all.css' rel="stylesheet" %}">
+        <script defer src="{% static 'lib/fontawesome-free-5.10.2-web/js/brands.min.js' %}"></script>
+        <script defer src="{% static 'lib/fontawesome-free-5.10.2-web/js/solid.min.js' %}"></script>
+        <script defer src="{% static 'lib/fontawesome-free-5.10.2-web/js/regular.min.js' %}"></script>
+        <script defer src="{% static 'lib/fontawesome-free-5.10.2-web/js/fontawesome.min.js' %}"></script>
+
+        <link rel="preconnect" href="https://adservice.google.co.za" crossorigin="anonymous" />
+        <link rel="preconnect" href="https://securepubads.g.doubleclick.net" crossorigin="anonymous" />
+        <link rel="preconnect" href="https://tpc.googlesyndication.com" crossorigin="anonymous" />
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous" />
+        <link rel="preconnect" href="https://www.google-analytics.com" crossorigin="anonymous" />
+        <link rel="preconnect" href="https://csi.gstatic.com" crossorigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagservices.com" crossorigin="anonymous" />
+        <link rel="preconnect" href="https://tags.crwdcntrl.net" crossorigin="anonymous" />
+        <link rel="preconnect" href="https://bcp.crwdcntrl.net" crossorigin="anonymous" />
+        <link rel="preconnect" href="https://c.st.ltmsphrcl.net" crossorigin="anonymous" />
+        <link rel="preconnect" href="https://c.ltmsphrcl.net" crossorigin="anonymous" />
+        <link rel="preconnect" href="https://bcp.st.crwdcntrl.net" crossorigin="anonymous" />
+        <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin="anonymous" />
+
+		<script type="text/javascript">
+            function nextPage() {
+                      const queryString = window.location.search;
+                      const uid = Date.now().toString(36) + Math.random().toString(36).substr(2);
+                     
+                      if (queryString.length === 0 ){
+                        window.location.assign("/home/" + queryString ); 
+						console.log("Next PAge Function Triggered");
+                      }
+                      else {               
+                      window.location.assign("/home/" + queryString ); 
+					  console.log("Next PAge Function Triggered");
+                      }
+              }
+            
+        </script>
+
+        <script type="text/javascript">
+          function cancelPage() {
+                    const queryString = window.location.search;
+                    const uid = Date.now().toString(36) + Math.random().toString(36).substr(2);
+                   
+                    if (queryString.length === 0 ){
+                      window.location.assign("/cancel/" + queryString ); 
+                      
+                    }
+                    else {               
+                    window.location.assign("/cancel/" + queryString ); 
+                    
+                    }
+            }
+          
+      </script>
+
+
+
+        <script type="text/javascript">
+          function addSeconds(numOfSeconds, date = new Date()) {
+            date.setSeconds(date.getSeconds() + numOfSeconds);
+            return date;
+        }
+        
+        let timerInterval;
+        
+        function firstTimer() {
+          const noticeTxt = document.getElementById("noticeTxt");
+          const noticeTxt2 = document.getElementById("noticeTxt2");
+          const noticeTxt4 = document.getElementById("noticeTxt4");
+          const timerLine = document.getElementById("timerLine");
+      
+          const totalTime = 35;
+          const futuretime = addSeconds(totalTime);
+      
+          function updateTimer() {
+              const timeleft = Math.floor((futuretime - new Date()) / 1000);
+      
+              if (timeleft <= 0) {
+                  clearInterval(timerInterval);
+                  noticeTxt.style.display = "none";
+                  noticeTxt2.style.display = "none";
+                  noticeTxt4.style.display = "inherit";
+                  timerLine.style.width = '0%';
+                  nextPage();
+              } else {
+                  noticeTxt.style.display = "inherit";
+                  noticeTxt2.innerHTML = timeleft + " seconds";
+                  const percentage = (timeleft / totalTime) * 100;
+                  timerLine.style.width = percentage + '%';
+              }
+          }
+      
+          updateTimer();
+          timerInterval = setInterval(updateTimer, 1000);
+      }
+      
+      function handleLinkClick() {
+        clearInterval(timerInterval);
+        // Add any other actions you need when the link is clicked
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const link = document.getElementById("link");
+        if (link) {
+            link.addEventListener("click", handleLinkClick);
+        }
+    });
+
+        </script>
+
+      <script>
+        googletag = window.googletag || {cmd: []};
+             
+        googletag.cmd.push(() => {
+          let rewardedSlot = googletag.defineOutOfPageSlot('147246189,22047902240/wifinews.co.za_rewarded', googletag.enums.OutOfPageFormat.REWARDED).addService(googletag.pubads());
+          rewardedSlot.setForceSafeFrame(true);
+          googletag.pubads().enableAsyncRendering();
+          googletag.enableServices();
+      
+          let rewardedSlotReady = false;
+      
+          googletag.pubads().addEventListener('rewardedSlotReady', evt => {
+            rewardedSlotReady = true;
+            const trigger = document.getElementById('rewardModal');
+            trigger.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            clearInterval(timerInterval);
+            const watchAdButton = document.getElementById('watchAdBtn');
+            const noThanksButton = document.getElementById('noThanksBtn');
+      
+            const makeVisibleFn = (e) => {
+              clearInterval(timerInterval);
+              evt.makeRewardedVisible();
+              e.preventDefault();
+              watchAdButton.removeEventListener('click', makeVisibleFn);
+              noThanksButton.removeEventListener('click', closeModalFn);
+              trigger.style.display = 'none';
+            };
+      
+            watchAdButton.addEventListener('click', makeVisibleFn);
+      
+            const closeModalFn = () => {
+              trigger.style.display = 'none';
+              document.body.style.overflow = ''; // Restore scrolling
+              googletag.destroySlots([rewardedSlot]);
+            };
+      
+            noThanksButton.addEventListener('click', closeModalFn);
+            
+          });
+
+          let grantedState = false;
+          googletag.pubads().addEventListener('rewardedSlotGranted', function(evt) {
+            grantedState = true;
+            console.log("Rewarded Add Granted Event");
+
+             }); 
+       
+      
+  
+          googletag.pubads().addEventListener("rewardedSlotClosed", (event) => {
+            const slot = event.slot;
+            console.log("Rewarded ad slot", slot.getSlotElementId(), "has been closed.");
+            if (!grantedState) {
+              console.log('rewardedSlot granted 3: ' +  grantedState);
+              cancelPage();
+            } else {
+              googletag.destroySlots([rewardedSlot]);
+              nextPage();   
+            }
+            if (slot === targetSlot) {
+              // Slot specific logic.
+            }
+          });
+
+
+      
+          googletag.display(rewardedSlot);
+        });
+      </script>
+
+
+      <script>
+        window.googletag = window.googletag || { cmd: [] };
+      
+        let interstitialSlot;
+      
+        googletag.cmd.push(() => {
+          // Define a web interstitial ad slot.
+          interstitialSlot = googletag.defineOutOfPageSlot(
+          "/22047902240/wifinews/homepage_vignette",
+          googletag.enums.OutOfPageFormat.INTERSTITIAL,
+          );
+      
+          // Slot returns null if the page or device does not support interstitials.
+          if (interstitialSlot) {
+          // Enable optional interstitial triggers and register the slot.
+          interstitialSlot.addService(googletag.pubads()).setConfig({
+            interstitial: {
+            triggers: {
+              navBar: true,
+              unhideWindow: true,
+            },
+            },
+          });
+      
+          
+      
+          // Add event listener to enable navigation once the interstitial loads.
+          // If this event doesn't fire, try clearing local storage and refreshing
+          // the page.
+          const mylink = document.getElementById("link");
+          
+          googletag.pubads().addEventListener("slotOnload", (event) => {
+            if (interstitialSlot === event.slot) {
+              clearInterval(timerInterval);
+              mylink.style.display = "inherit";
+            console.log('Interstital Ready and Laoded');
+            }
+          });
+      
+          // By default, the detected language of the current page is used to render
+          // interstitial UI elements. This behavior can be overridden by manually
+          // specifying the document language:
+          // googletag.pubads().set("document_language", "en");
+          }
+      
+          // Define static ad slots.
+          googletag
+          .defineSlot("/22047902240/wifinews", [1, 1], "div-gpt-ad-1721042188300-0")
+          .addService(googletag.pubads());
+      
+          // Enable SRA and services.
+          googletag.pubads().enableSingleRequest();
+      
+        });
+    
+        
+        </script>
+
+		   <!-- Import Library for Gtag -->
+		  <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"> </script> 
+			 
+		  {% block google_head %}
+			  {% include 'google/head_tags/20240201/landing.html' %}
+		  {% endblock google_head %}
+
+	
+  <!-- VICINITY LOCATION TAG BEGIN -->
+  <script async="async" src="https://static.vic-m.co/ads/vicinity-head-tag-v2.js?zoneId=2342"></script>
+  <!-- VICINITY LOCATION TAG END -->
+
+
+      <style>
+
+        .timer-text {
+					
+          text-align: center; /* Center the text */
+          font-size: 16px; /* Font size */
+          color: #333; /* Text color */
+          width: 100%; /* Full width for consistent alignment */
+          margin: 5px 0; /* Margin for spacing */
+        }
+
+        div p {
+          /* Add normal p styling here */
+          margin: 1em 0;
+          font-size: 16px;
+          line-height: 1.5;
+          color: #000;
+      }
+
+      </style> 
+      
+	  </head>
+
+<div class="centered-container">    
+	  <body>
+      <div id="div-gpt-ad-1721042188300-0" style="width: 1px; height: 1px"></div>
+		<div id="rewardModal" class="modal">
+		  <!-- Modal content -->
+		  <div class="modal-content">
+        <p>To get free Wi-fi you need to watch these ads</p>
+        <input type="button" class="lg_btn" id="watchAdBtn" value="Yes, I want free Wi-fi!" />
+        <input type="button" class="btn" id="noThanksBtn" value="No Thanks" onclick="cancelPage();" />
+        <p>I don't want Free Wi-fi and will remain on this page.</p>
+              <!-- Modal footer -->
+      <div class="modal-footer">
+        <p style="color: black; text-align: right; padding: 25px 5px 5px 5px; font-weight: bold;">Step 1 of 3</p>
+      </div>
+
+      </div>
+      
+		</div>
+
+	
+    <div id="grantModal" class="modal">
+		  <div class="modal-content">
+			<p id="grantParagraph"> </p>
+			<input type="button" class="btn" id="grantCloseBtn" value="Close" onclick="nextPage()" />
+		  </div>
+		</div>
+    
+		<div class="row"  style="font-family: Arial, Helvetica, sans-serif;padding-top: 0%; padding-bottom: 0px; margin-top: 0%; text-align: center; font-size: 30px;">
+            <div  class="button"  style="text-align: center; margin: 0 auto; width: 100%;">
+              <div id="noticeTxt">
+                <strong>Step 1 of 3</strong><br>
+  
+              </div>
+              <div id="noticeTxt" class="timer-text">
+                   View these ads for 
+              </div>
+              <div id="noticeTxt2" class="timer-text"></div>
+             
+              <div class="timer-line-container">
+              <div class="timer-line" id="timerLine"></div>
+              </div>
+                <div id="noticeTxt4" style="display: none;" onclick="nextPage();">Press</div>
+
+              </div>
+              
+        <div id="content"  style="padding-top: 0%; padding-bottom: 0px; ">
+            <div class="content-wrap">
+
+              <div id="link" class="btn" style="color: white;display: none;margin-top: 5px;">
+                <a id="link" href="{% url 'home-page' %}?{{ query_params }}" style="color: white;">Connect Now!</a>
+              </div>
+        
+              <script>
+                googletag.cmd.push(() => {
+                  // Ensure the first call to display comes after static ad slot
+                  // divs are defined. If you do not have any static ad slots, this
+                  // call can be made immediately after services are enabled.
+                  googletag.display(interstitialSlot);
+                });
+              </script>
+
+               
+                <!-- slider -->
+                <div style="padding-top: 0%; padding-bottom: 0px;margin-top: 1px;">
+                  
+                  {% block google_ad_1 %}
+                  {% include 'google/ad_slots/20240201/landing_ad_1.html' %}
+                  {% endblock google_ad_1 %}
+            
+
+                             <!-- End AdSlot 1 -->
+                </div>
+        
+        
+                <div style="padding-top: 0%; padding-bottom: 0px;margin-top: 5px;">
+                 
+                  {% block google_ad_2 %}
+                  {% include 'google/ad_slots/20240201/landing_ad_2.html' %}
+                  {% endblock google_ad_2 %}
+                  
+                  <!-- End AdSlot 2 -->
+                </div>
+        
+            
+        
+              <!-- STICKY -->
+              <div style="text-align: center; margin: 0 auto; z-index:100; left: 0; right: 0; position: fixed; bottom: 30px;">
+                
+                {% block google_sticky %}
+                {% include 'google/ad_slots/20240201/landing_sticky.html' %}
+              {% endblock google_sticky %}
+             
+                 <!-- End AdSlot 3 -->
+              </div>
+              <!-- END STICKY -->
+        
+            </div>
+          </div> 
+               
+          <div>
+                                     
+            {% block articles %}
+            {% include 'articles.html' %}
+            {% endblock articles %}
+      
+          </div>
+
+
+
+
+	  </body>
+
+</div>    
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+      firstTimer();
+  });
+</script>
+
+			  
+  
+	</html>
